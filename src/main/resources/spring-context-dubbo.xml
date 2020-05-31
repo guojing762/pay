@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://code.alibabatech.com/schema/dubbo
-        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://dubbo.apache.org/schema/dubbo
+        http://dubbo.apache.org/schema/dubbo/dubbo.xsd
         ">
     <!-- 记录监控信息 -->
     <!-- <dubbo:monitor protocol="registry"/> -->
 	<!-- 提供方应用信息，用于计算依赖关系 -->
 	<dubbo:application name="spring-boot-pay" />
 	<!-- 使用zookeeper注册中心暴露服务地址 subscribe 默认：true 是否向此注册中心订阅服务，如果设为false，将只注册，不订阅 check 默认：true 注册中心不存在时，是否报错    -->
-	<dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" check="false"/>
+	<dubbo:registry protocol="nacos" address="${dubbo.registry.address}" check="false"/>
 	<!-- 
 	           生产者配置 生产者  远程默认调用3次 参数 retries="2" async="true" 异步返回结果 默认是同步 timeout="10000" 毫秒
 	           用dubbo协议在20882端口暴露服务  固定线程池 10 启动时建立线程，不关闭，一直持有  负载均衡策略 轮询
